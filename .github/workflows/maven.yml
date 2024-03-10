@@ -38,8 +38,7 @@ jobs:
           path: aws-cli
       - name: Install AWS CLI
         run: |
-          cd aws-cli
-          ./ ./install
+          choco install awscli
 
 #      - name: AWS S3 Upload
 #        run: |
