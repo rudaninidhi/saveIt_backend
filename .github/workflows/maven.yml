@@ -21,7 +21,7 @@ jobs:
 
     steps:
     - name: Checkout Repository
-        uses:actions/checkout@v2
+      uses: actions/checkout@v2
 
     - name: Debug Output
       run: |
@@ -35,7 +35,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn clean install  
-       working-directory:D:\springboot\helloworld\pom.xml
+      working-directory: D:\springboot\helloworld\pom.xml
+
+    - name: Set up AWS CLI
+      uses: aws-cli/setup-aws-cli@v2
+      
     - name: AWS S3 Upload
       run: |
         aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
