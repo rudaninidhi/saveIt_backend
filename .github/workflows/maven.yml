@@ -47,11 +47,15 @@ jobs:
         env:
           AWS_DEFAULT_REGION: 'eu-west-1'
 
-      - name: Set up SSH key
+      - name: Deploy to EC2 instance
         run: |
-          Add-Content -Path $env:USERPROFILE\.ssh\id_rsa -Value $env:SSH_PRIVATE_KEY
-          ssh-keyscan -H ${{secrets.EC2_HOST}} >> $env:USERPROFILE\.ssh\known_hosts
-          ls
+          aws ec2 send-command --instance-id  ${{ secrets.EC2_HOST }} --document-name "RunCommand" \
+            --command "ls" --output text
+#      - name: Set up SSH key
+#        run: |
+#          Add-Content -Path $env:USERPROFILE\.ssh\id_rsa -Value $env:SSH_PRIVATE_KEY
+#          ssh-keyscan -H ${{secrets.EC2_HOST}} >> $env:USERPROFILE\.ssh\known_hosts
+#          ls
       # - name: Copy files to EC2
       #   run: |
       #     scp -i $env:USERPROFILE\.ssh\id_rsa -r  ec2-user@$env:EC2_INSTANCE_IP:/path/to/remote/app
