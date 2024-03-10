@@ -46,6 +46,6 @@ jobs:
           aws s3 ls
           echo %cd%
           dir
-          aws s3 cp target/*.jar s3://springboot-helloworld/
+          aws s3 cp target\*.jar s3://springboot-helloworld/
         env:
           AWS_DEFAULT_REGION: 'eu-west-1'
