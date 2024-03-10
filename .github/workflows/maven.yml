@@ -46,3 +46,12 @@ jobs:
           aws s3 cp "D:\a\saveIt_backend\saveIt_backend\target\helloworld-0.0.1-SNAPSHOT.jar" s3://springboot-helloworld/
         env:
           AWS_DEFAULT_REGION: 'eu-west-1'
+
+      - name: Set up SSH key
+        run: |
+          Add-Content -Path $env:USERPROFILE\.ssh\id_rsa -Value $env:SSH_PRIVATE_KEY
+          ssh-keyscan -H $env:EC2_INSTANCE_IP >> $env:USERPROFILE\.ssh\known_hosts
+          ls
+      # - name: Copy files to EC2
+      #   run: |
+      #     scp -i $env:USERPROFILE\.ssh\id_rsa -r  ec2-user@$env:EC2_INSTANCE_IP:/path/to/remote/app
