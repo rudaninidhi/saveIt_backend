@@ -32,13 +32,19 @@ jobs:
       - name: Build with Maven
         run: mvn clean install
 
-      - name: Set up AWS CLI
-        uses: aws-cli/setup-aws-cli@v2
-
-      - name: AWS S3 Upload
+      - uses: actions/checkout@v2
+        with:
+          repository: aws/aws-cli
+          path: aws-cli
+      - name: Install AWS CLI
         run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws s3 cp target/*.jar s3://springboot-helloworld/
-        env:
-          AWS_DEFAULT_REGION: 'Europe (Ireland) eu-west-1'
+          cd aws-cli
+          ./ ./install
+
+#      - name: AWS S3 Upload
+#        run: |
+#          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          aws s3 cp target/*.jar s3://springboot-helloworld/
+#        env:
+#          AWS_DEFAULT_REGION: 'Europe (Ireland) eu-west-1'
