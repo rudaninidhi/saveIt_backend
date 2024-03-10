@@ -49,8 +49,7 @@ jobs:
 
       - name: Deploy to EC2 instance
         run: |
-          aws ec2 send-command --instance-id  ${{ secrets.EC2_HOST }} --document-name "RunCommand" \
-            --command "ls" --output text
+          aws ec2 send-command --instance-id  ${{ secrets.EC2_HOST }} --document-name "RunCommand" --command "ls /" --output text
 #      - name: Set up SSH key
 #        run: |
 #          Add-Content -Path $env:USERPROFILE\.ssh\id_rsa -Value $env:SSH_PRIVATE_KEY
