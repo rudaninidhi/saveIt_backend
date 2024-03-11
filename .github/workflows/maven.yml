@@ -49,9 +49,9 @@ jobs:
           AWS_DEFAULT_REGION: 'eu-west-1'
 
       - name: Connect to EC2 Instance
-        uses: actions/setup-checkout@v2
+        uses: myoung34/setup-winrm@v1
         with:
-          host: ${{ secrets.EC2_PUBLIC_IP }}
+          host: ${{ secrets.AWS_ACCESS_KEY_ID }}
           port: 5985
           username: terraform-admin
           password: ${{ secrets.EC2_WINRM_PASSWORD }}
