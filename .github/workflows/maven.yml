@@ -54,6 +54,7 @@ jobs:
           echo "$env:SSH_PRIVATE_KEY" > $env:USERPROFILE\.ssh\id_rsa
           chmod 600 $env:USERPROFILE\.ssh\id_rsa
           ssh-keyscan -H ${{ secrets.EC2_HOST }} >> $env:USERPROFILE\.ssh\known_hosts
+     
       
 
       - name: Connect to EC2 instance
