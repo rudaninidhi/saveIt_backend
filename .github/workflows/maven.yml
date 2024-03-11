@@ -40,10 +40,6 @@ jobs:
         run: |
           choco install awscli
 
-      - name: Update AWS CLI
-        run: |
-          choco upgrade awscli -y
-
       - name: AWS S3 Upload
         run: |
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
@@ -52,11 +48,15 @@ jobs:
         env:
           AWS_DEFAULT_REGION: 'eu-west-1'
 
-      - name: Deploy to EC2 instance
+      - name: Set up SSH key
         run: |
-          aws ec2 send-command --instance-id ${{ secrets.EC2_HOST }} --document-name "RunCommand" --command "ls /" --output text
-        env:
-          AWS_DEFAULT_REGION: 'eu-west-1'
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan -H ${{ secrets.EC2_HOST }} >> ~/.ssh/known_hosts
+
+      - name: Connect to EC2 instance
+        run: |
+          ssh -i ~/.ssh/id_rsa ec2-user@${{ secrets.EC2_HOST }} "ls "
 
 
       #      - name: Deploy to EC2 instance
