@@ -58,7 +58,7 @@ jobs:
           AWS_DEFAULT_REGION: 'eu-west-1'
       - name: Deploy to EC2 instance
         run: |
-          aws ssm send-command --instance-ids  ${{ secrets.EC2_HOST }} --document-name 'AWS-RunShellScript' --parameters command="ls /"
+          aws ssm send-command --instance-ids  ${{ secrets.EC2_HOST }} --document-name "AWS-RunShellScript" --parameters command="ls /"
 #      - name: Set up SSH key
 #        run: |
 #          Add-Content -Path $env:USERPROFILE\.ssh\id_rsa -Value $env:SSH_PRIVATE_KEY
