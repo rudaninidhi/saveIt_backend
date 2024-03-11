@@ -46,16 +46,16 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
 
 
-      - name: AWS S3 Upload
-        run: |
-          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws s3 ls
-          pwd
-          ls -a
-          aws s3 cp "target/helloworld-0.0.1-SNAPSHOT.jar" s3://springboot-helloworld/
-        env:
-          AWS_DEFAULT_REGION: 'eu-west-1'
+#      - name: AWS S3 Upload
+#        run: |
+#          aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
+#          aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#          aws s3 ls
+#          pwd
+#          ls -a
+#          aws s3 cp "target/helloworld-0.0.1-SNAPSHOT.jar" s3://springboot-helloworld/
+#        env:
+#          AWS_DEFAULT_REGION: 'eu-west-1'
       - name: SSH into EC2 and deploy
         uses: appleboy/ssh-action@master
         with:
@@ -64,7 +64,8 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "Java process started."
-            ls /
+            mkdir /tmp/testcommand
+            ls /tmp
 #      - name: Deploy to EC2 instance
 #        run: |
 #          aws ssm send-command --instance-ids  ${{ secrets.EC2_HOST }} --document-name "AWS-RunShellScript" --parameters command="ls /"
