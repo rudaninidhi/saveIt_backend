@@ -17,7 +17,7 @@ on:
 jobs:
   build:
 
-    runs-on: windows-latest
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout Repository
@@ -44,25 +44,21 @@ jobs:
         run: |
           aws configure set aws_access_key_id ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws s3 cp "D:\a\saveIt_backend\saveIt_backend\target\helloworld-0.0.1-SNAPSHOT.jar" s3://springboot-helloworld/
+          aws s3 ls
+          pwd
+          ls -a
+          aws s3 cp "target/helloworld-0.0.1-SNAPSHOT.jar" s3://springboot-helloworld/
         env:
           AWS_DEFAULT_REGION: 'eu-west-1'
 
-      - name: Set up WinRM
-        uses: myoung34/setup-winrm@v1
-        with:
-            host: ${{ secrets.EC2_HOST }}
-            username: terraform-admin
-            password: ${{ secrets.EC2_PASSWORD }}
-            scheme: http
-            validate: false
 
-      - name: Run command on Windows EC2
-        run: |
-                # Your PowerShell commands to run on the EC2 instance
-                Set-Location -Path 'C:\path\to\your\application\files'
-                Start-Process -FilePath 'java' -ArgumentList '-jar', 'helloworld-0.0.1-SNAPSHOT.jar' -NoNewWindow -RedirectStandardOutput 'output.log'
-                Write-Output "Java process started."
+
+#      - name: Run command on Windows EC2
+#        run: |
+#
+#                Set-Location -Path 'C:\path\to\your\application\files'
+#                Start-Process -FilePath 'java' -ArgumentList '-jar', 'helloworld-0.0.1-SNAPSHOT.jar' -NoNewWindow -RedirectStandardOutput 'output.log'
+#                Write-Output "Java process started."
 
         
  
