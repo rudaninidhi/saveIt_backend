@@ -56,9 +56,18 @@ jobs:
           aws s3 cp "target/helloworld-0.0.1-SNAPSHOT.jar" s3://springboot-helloworld/
         env:
           AWS_DEFAULT_REGION: 'eu-west-1'
-      - name: Deploy to EC2 instance
-        run: |
-          aws ssm send-command --instance-ids  ${{ secrets.EC2_HOST }} --document-name "AWS-RunShellScript" --parameters command="ls /"
+      - name: SSH into EC2 and deploy
+        uses: appleboy/ssh-action@master
+        with:
+          host: 34.245.195.212
+          username: ec2-user
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            echo "Java process started."
+            ls /
+#      - name: Deploy to EC2 instance
+#        run: |
+#          aws ssm send-command --instance-ids  ${{ secrets.EC2_HOST }} --document-name "AWS-RunShellScript" --parameters command="ls /"
 #      - name: Set up SSH key
 #        run: |
 #          Add-Content -Path $env:USERPROFILE\.ssh\id_rsa -Value $env:SSH_PRIVATE_KEY
