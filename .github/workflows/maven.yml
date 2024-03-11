@@ -46,7 +46,7 @@ jobs:
           aws configure set aws_secret_access_key ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws s3 cp "D:\a\saveIt_backend\saveIt_backend\target\helloworld-0.0.1-SNAPSHOT.jar" s3://springboot-helloworld/
         env:
-          AWS_DEFAULT_REGION: 'eu-west-1
+          AWS_DEFAULT_REGION: 'eu-west-1'
 
       - name: Set up SSH key
         run: |
