@@ -57,16 +57,16 @@ jobs:
             source: 'target/helloworld-0.0.1-SNAPSHOT.jar'
             target: '/home/terraform-admin/helloworld-0.0.1-SNAPSHOT.jar'
 
-      - name: SSH into EC2 and deploy
-        uses: appleboy/ssh-action@master
-        with:
-                host: 34.245.195.212
-                username: terraform-admin
-                key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                script: |
-                  cd /home/terraform-admin/helloworld-0.0.1-SNAPSHOT.jar/target
-                  nohup java -jar helloworld-0.0.1-SNAPSHOT > output.log 2>&1 &
-                  echo "Java process started."
+#      - name: SSH into EC2 and deploy
+#        uses: appleboy/ssh-action@master
+#        with:
+#                host: 34.245.195.212
+#                username: terraform-admin
+#                key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+#                script: |
+#                  cd /home/terraform-admin/helloworld-0.0.1-SNAPSHOT.jar/target
+#                  nohup java -jar helloworld-0.0.1-SNAPSHOT > output.log 2>&1 &
+#                  echo "Java process started."
 
 
       #      - name: Deploy to EC2 instance
