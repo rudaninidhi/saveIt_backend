@@ -38,7 +38,13 @@ jobs:
           path: aws-cli
       - name: Install AWS CLI
         run: |
-          choco install awscli
+          sudo apt-get update
+          sudo apt-get install -y awscli
+        env:
+          AWS_DEFAULT_REGION: 'eu-west-1'
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
 
       - name: AWS S3 Upload
         run: |
