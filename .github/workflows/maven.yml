@@ -48,18 +48,24 @@ jobs:
         env:
           AWS_DEFAULT_REGION: 'eu-west-1'
 
-      - name: SSH into EC2 and deploy
-        uses: appleboy/ssh-action@master
+      - name: Set up WinRM
+        uses: myoung34/setup-winrm@v1
         with:
-          host: 34.245.195.212
-          username: terraform-admin
-          key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          script: |
-            cd \home\terraform-admin\helloworld-0.0.1-SNAPSHOT.jar\target
-            nohup java -jar helloworld-0.0.1-SNAPSHOT.jar > output.log 2>&1 &
-            echo "Java process started."
+            host: ${{ secrets.EC2_HOST }}
+            username: terraform-admin
+            password: ${{ secrets.EC2_PASSWORD }}
+            scheme: http
+            validate: false
 
+      - name: Run command on Windows EC2
+        run: |
+                # Your PowerShell commands to run on the EC2 instance
+                Set-Location -Path 'C:\path\to\your\application\files'
+                Start-Process -FilePath 'java' -ArgumentList '-jar', 'helloworld-0.0.1-SNAPSHOT.jar' -NoNewWindow -RedirectStandardOutput 'output.log'
+                Write-Output "Java process started."
 
+        
+ 
 
       #      - name: Deploy to EC2 instance
 #        run: |
