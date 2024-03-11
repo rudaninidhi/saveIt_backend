@@ -49,7 +49,7 @@ jobs:
           AWS_DEFAULT_REGION: 'eu-west-1'
 
       - name: Connect to EC2 Instance
-        uses: myoung34/setup-winrm@v1
+        uses: actions/setup-winrm@v1
         with:
           host: ${{ secrets.AWS_ACCESS_KEY_ID }}
           port: 5985
