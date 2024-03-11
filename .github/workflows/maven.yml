@@ -56,6 +56,16 @@ jobs:
 #          aws s3 cp "target/helloworld-0.0.1-SNAPSHOT.jar" s3://springboot-helloworld/
 #        env:
 #          AWS_DEFAULT_REGION: 'eu-west-1'
+
+      - name: Copy JAR file to EC2
+        uses: appleboy/scp-action@master
+        with:
+          host:  34.245.195.212
+          username: ec2-user
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          source: 'target/helloworld-0.0.1-SNAPSHOT.jar'
+          target: '/home/ec2-user/helloworld-0.0.1-SNAPSHOT.jar'
+
       - name: SSH into EC2 and deploy
         uses: appleboy/ssh-action@master
         with:
@@ -65,15 +75,6 @@ jobs:
           script: |
             echo "Java process started."
             ls target
-            nohup java -jar target/helloworld-0.0.1-SNAPSHOT.jar > output.log
-#      - name: Deploy to EC2 instance
-#        run: |
-#          aws ssm send-command --instance-ids  ${{ secrets.EC2_HOST }} --document-name "AWS-RunShellScript" --parameters command="ls /"
-#      - name: Set up SSH key
-#        run: |
-#          Add-Content -Path $env:USERPROFILE\.ssh\id_rsa -Value $env:SSH_PRIVATE_KEY
-#          ssh-keyscan -H ${{secrets.EC2_HOST}} >> $env:USERPROFILE\.ssh\known_hosts
-#          ls
-      # - name: Copy files to EC2
-      #   run: |
-      #     scp -i $env:USERPROFILE\.ssh\id_rsa -r  ec2-user@$env:EC2_INSTANCE_IP:/path/to/remote/app
+            nohup java -jar target/helloworld-0.0.1-SNAPSHOT.jar > output.log>&1 &
+            echo "Java process started."
+
