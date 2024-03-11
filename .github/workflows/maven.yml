@@ -53,13 +53,7 @@ jobs:
 
 
 
-#      - name: Run command on Windows EC2
-#        run: |
 #
-#                Set-Location -Path 'C:\path\to\your\application\files'
-#                Start-Process -FilePath 'java' -ArgumentList '-jar', 'helloworld-0.0.1-SNAPSHOT.jar' -NoNewWindow -RedirectStandardOutput 'output.log'
-#                Write-Output "Java process started."
-
         
  
 
