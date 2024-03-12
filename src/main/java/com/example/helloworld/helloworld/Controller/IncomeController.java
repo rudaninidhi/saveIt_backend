@@ -48,6 +48,7 @@ public class IncomeController {
     @PutMapping("/updateIncome")
     public ResponseEntity<String> updateExpense(@RequestBody Income updatedIncome) {
         try {
+            System.out.println("method called");
             serviceobj.updateIncome(updatedIncome);
             return new ResponseEntity<>("Income updated successfully", HttpStatus.OK);
         } catch (Exception e) {
