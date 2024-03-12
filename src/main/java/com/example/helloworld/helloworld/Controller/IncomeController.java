@@ -25,6 +25,7 @@ public class IncomeController {
     @GetMapping("/getIncomeById/{id}")
     public Optional<Income> getExpenseById(@PathVariable int id){
         System.out.println( serviceobj.getIncomeById(id));
+        //
         return serviceobj.getIncomeById(id);
     }
     private static final Logger logger = LoggerFactory.getLogger(ExpenseController.class);
