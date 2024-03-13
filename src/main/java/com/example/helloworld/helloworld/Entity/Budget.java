@@ -49,6 +49,7 @@ public class Budget implements Serializable {
     }
 
     public Integer getBudget_id() {
-    return null;
+        return budget_id;
     }
+
 }

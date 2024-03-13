@@ -26,6 +26,7 @@ public class BudgetService {
     }
 
     public ResponseEntity<String> addBudget(@RequestBody Budget budget) {
+
         try {
             budgetDao.save(budget);
             return new ResponseEntity<>("Budget added successfully", HttpStatus.CREATED);
