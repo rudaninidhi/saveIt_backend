@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-hi
-=======
+
 
 <h1>Finance and Budgeting App</h1>
  <h2>Introduction</h2>
