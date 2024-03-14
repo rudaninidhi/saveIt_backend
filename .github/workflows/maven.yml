@@ -75,5 +75,5 @@ jobs:
           script: |
             cd /home/ec2-user/totalcarefix-0.0.1-SNAPSHOT.jar/target
             nohup java -jar totalcarefix-0.0.1-SNAPSHOT.jar > output.log 2>&1 &
-            echo "Java process started."
+            echo "Java process started"
 
