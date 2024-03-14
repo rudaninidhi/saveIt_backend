@@ -1,3 +1,6 @@
+<<<<<<< HEAD
+hi
+=======
 
 <h1>Finance and Budgeting App</h1>
  <h2>Introduction</h2>
@@ -155,3 +158,4 @@ documentation.
 
 ## Confluence 
 <ul><li> <a href="https://bbd-nidhirudani.atlassian.net/wiki/spaces/~712020fd6e855c677a4607aa91c7562553b854/pages/4030466/SaveIt+Backend">Confluence</a></li> </ul>
+>>>>>>> 86db96b4e94de4aa980aefc2752234262b835e0a
