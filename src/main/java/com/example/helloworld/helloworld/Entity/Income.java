@@ -76,4 +76,7 @@ public class Income implements Serializable {
 
     public Income() {
     }
+
+    public void setAmount(double v) {
+    }
 }

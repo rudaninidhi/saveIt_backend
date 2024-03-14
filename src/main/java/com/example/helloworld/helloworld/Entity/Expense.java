@@ -88,4 +88,10 @@ public class Expense implements Serializable {
 
                 '}';
     }
+
+    public void setExpense_id(int i) {
+    }
+
+    public void setAmount(double v) {
+    }
 }
