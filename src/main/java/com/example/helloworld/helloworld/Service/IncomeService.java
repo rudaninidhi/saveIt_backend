@@ -2,10 +2,7 @@ package com.example.helloworld.helloworld.Service;
 
 import com.example.helloworld.helloworld.Dao.IncomeDao;
 import com.example.helloworld.helloworld.Entity.Income;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
-import org.springframework.cache.annotation.CacheConfig;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,58 +12,55 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-@CacheConfig(cacheNames = {"Income"})
-public  class IncomeService  {
+public class IncomeService {
 
     @Autowired
     IncomeDao income;
 
-    public List<Income> getIncome(){
+    public List<Income> getIncome() {
         return income.findAll();
-
     }
 
-    public Optional<Income> getIncomeById(int id){
+    public Optional<Income> getIncomeById(int id) {
         return income.findById(id);
     }
 
+    public List<Income> getIncomeByUserId(int id) {
+        return income.findIncomesByUserId(id);
+    }
 
-    public ResponseEntity<String> addIncome(@RequestBody Income income1){
+    public boolean addIncome(@RequestBody Income income1) {
         try {
             income.save(income1);
-            System.out.println("here"+income1);
-            return new ResponseEntity<>("Income added successfully", HttpStatus.CREATED);
+            System.out.println("here" + income1);
+            return true;
         } catch (Exception e) {
-            return new ResponseEntity<>("Error adding Income: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return false;
         }
     }
 
-    public ResponseEntity<String> updateIncome(Income updatedIncome) {
+    public boolean updateIncome(Income updatedIncome) {
         try {
-
             if (!income.existsById(updatedIncome.getIncome_id())) {
-                return new ResponseEntity<>("Income not found", HttpStatus.NOT_FOUND);
+                return false;
             }
             income.save(updatedIncome);
-
-            return new ResponseEntity<>("Income updated successfully", HttpStatus.OK);
+            return true;
         } catch (Exception e) {
-            return new ResponseEntity<>("Error updating Income: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return false;
         }
     }
-    public ResponseEntity<String> deleteIncome(int incomeId) {
-        try {
-            // Check if the expense with the given ID exists
-            if (!income.existsById(incomeId)) {
-                return new ResponseEntity<>("Income not found", HttpStatus.NOT_FOUND);
-            }
-            income.deleteById(incomeId);
 
-            return new ResponseEntity<>("Income deleted successfully", HttpStatus.OK);
+    public boolean deleteIncome(int incomeId) {
+        try {
+            if (income.existsById(incomeId)) {
+                income.deleteById(incomeId);
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception e) {
-            return new ResponseEntity<>("Error deleting Income: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return false;
         }
     }
 }
-
-

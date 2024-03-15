@@ -26,6 +26,17 @@ public class GoalController {
         return goalService.getAllGoals();
     }
 
+    @GetMapping("/getGoalByUserId/{id}")
+    public ResponseEntity<?> getGoalByUserId(@PathVariable int id) {
+        List<Goal> goals = goalService.getGoalByUserId(id);
+        if (goals.isEmpty()) {
+            return new ResponseEntity<>("No goals found for the user ID: " + id, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(goals, HttpStatus.OK);
+        }
+    }
+
+
     @GetMapping("/getGoalById/{id}")
     public ResponseEntity<Goal> getGoalById(@PathVariable int id) {
         Optional<Goal> goal = goalService.getGoalById(id);
@@ -37,22 +48,27 @@ public class GoalController {
     public ResponseEntity<String> addGoal(@RequestBody Goal goal) {
         logger.info("Goal received: {}", goal);
         try {
-            goalService.addGoal(goal);
-            return new ResponseEntity<>("Goal added successfully", HttpStatus.OK);
+            boolean success = goalService.addGoal(goal);
+            if (success) {
+                return new ResponseEntity<>("Goal added successfully", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Error adding Goal", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
         } catch (DataAccessException e) {
             logger.error("Error adding Goal", e);
             return new ResponseEntity<>("Database error adding Goal", HttpStatus.INTERNAL_SERVER_ERROR);
-        } catch (Exception e) {
-            logger.error("Unexpected error adding Goal", e);
-            return new ResponseEntity<>("Error adding Goal: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @PutMapping("/updateGoal")
     public ResponseEntity<String> updateGoal(@RequestBody Goal updatedGoal) {
         try {
-            goalService.updateGoal(updatedGoal);
-            return new ResponseEntity<>("Goal updated successfully", HttpStatus.OK);
+            boolean success = goalService.updateGoal(updatedGoal);
+            if (success) {
+                return new ResponseEntity<>("Goal updated successfully", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Goal not found", HttpStatus.NOT_FOUND);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>("Error updating Goal: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -61,8 +77,12 @@ public class GoalController {
     @DeleteMapping("/deleteGoal/{goalId}")
     public ResponseEntity<String> deleteGoal(@PathVariable int goalId) {
         try {
-            goalService.deleteGoal(goalId);
-            return new ResponseEntity<>("Goal deleted successfully", HttpStatus.OK);
+            boolean success = goalService.deleteGoal(goalId);
+            if (success) {
+                return new ResponseEntity<>("Goal deleted successfully", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Goal not found", HttpStatus.NOT_FOUND);
+            }
         } catch (Exception e) {
             return new ResponseEntity<>("Error deleting Goal: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }

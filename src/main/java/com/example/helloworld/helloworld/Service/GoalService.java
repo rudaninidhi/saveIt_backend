@@ -24,40 +24,43 @@ public class GoalService {
         return goalDao.findById(id);
     }
 
-    public ResponseEntity<String> addGoal(Goal goal) {
+    public List<Goal> getGoalByUserId(int id) {
+        return goalDao.findGoalsByUserId(id);
+    }
+
+
+    public boolean addGoal(Goal goal) {
         try {
             goalDao.save(goal);
-            return new ResponseEntity<>("Goal added successfully", HttpStatus.CREATED);
+            return true;
         } catch (Exception e) {
-            return new ResponseEntity<>("Error adding goal: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return false;
         }
     }
 
-    public ResponseEntity<String> updateGoal(Goal updatedGoal) {
+    public boolean updateGoal(Goal updatedGoal) {
         try {
-            if (!goalDao.existsById(updatedGoal.getGoalId())) {
-                return new ResponseEntity<>("Goal not found", HttpStatus.NOT_FOUND);
+            if (!goalDao.existsById(updatedGoal.getGoal_id())) {
+                return false;
             }
 
             goalDao.save(updatedGoal);
-
-            return new ResponseEntity<>("Goal updated successfully", HttpStatus.OK);
+            return true;
         } catch (Exception e) {
-            return new ResponseEntity<>("Error updating goal: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return false;
         }
     }
 
-    public ResponseEntity<String> deleteGoal(int goalId) {
+    public boolean deleteGoal(int goalId) {
         try {
-            if (!goalDao.existsById(goalId)) {
-                return new ResponseEntity<>("Goal not found", HttpStatus.NOT_FOUND);
+            if (goalDao.existsById(goalId)) {
+                goalDao.deleteById(goalId);
+                return true;
+            } else {
+                return false;
             }
-
-            goalDao.deleteById(goalId);
-
-            return new ResponseEntity<>("Goal deleted successfully", HttpStatus.OK);
         } catch (Exception e) {
-            return new ResponseEntity<>("Error deleting goal: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+            return false;
         }
     }
 }

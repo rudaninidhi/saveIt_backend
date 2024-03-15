@@ -13,12 +13,12 @@ public class Users implements Serializable {
     private int user_id;
     private String user_name;
     private String email_id;
-    private Date mobile_no;
+    private String mobile_no;
 
     public Users() {
     }
 
-    public Users(int user_id, String user_name, String email_id, Date mobile_no) {
+    public Users(int user_id, String user_name, String email_id, String mobile_no) {
         this.user_id = user_id;
         this.user_name = user_name;
         this.email_id = email_id;
@@ -49,11 +49,11 @@ public class Users implements Serializable {
         this.email_id = email_id;
     }
 
-    public Date getMobile_no() {
+    public String getMobile_no() {
         return mobile_no;
     }
 
-    public void setMobile_no(Date mobile_no) {
+    public void setMobile_no(String mobile_no) {
         this.mobile_no = mobile_no;
     }
 }
