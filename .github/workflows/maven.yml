@@ -74,7 +74,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             echo "Java process started."
-            ls target
+            cd helloworld-0.0.1-SNAPSHOT.jar/target
             nohup java -jar target/helloworld-0.0.1-SNAPSHOT.jar > output.log>&1 &
             echo "Java process started."
 
