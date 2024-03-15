@@ -1,4 +1,3 @@
-
 package com.example.helloworld.helloworld;
 
 import com.example.helloworld.helloworld.Dao.BudgetDao;
@@ -9,16 +8,13 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 
@@ -33,87 +29,67 @@ class BudgetServiceTest {
 
     @Test
     void getBudget() {
-        // Prepare data
         List<Budget> budgetList = new ArrayList<>();
         budgetList.add(new Budget());
         budgetList.add(new Budget());
 
-        // Mock repository method
         Mockito.when(budgetDao.findAll()).thenReturn(budgetList);
 
-        // Call service method
         List<Budget> result = budgetService.getBudget();
 
-        // Verify
         assertEquals(budgetList.size(), result.size());
     }
 
     @Test
     void getBudgetById() {
-        // Prepare data
         Budget budget = new Budget();
         budget.setBudget_id(1);
 
-        // Mock repository method
         Mockito.when(budgetDao.findById(1)).thenReturn(Optional.of(budget));
 
-        // Call service method
         Optional<Budget> result = budgetService.getBudgetById(1);
 
-        // Verify
         assertEquals(budget, result.orElse(null));
     }
 
     @Test
     void addBudget() {
-        // Prepare data
         Budget budget = new Budget();
 
-        // Mock repository method
         Mockito.when(budgetDao.save(any(Budget.class))).thenReturn(budget);
 
-        // Call service method
         boolean result = budgetService.addBudget(budget);
 
-        // Verify
-        assertEquals("budget added successfully", result);
+        assertEquals(true, result);
     }
 
     @Test
     void updateBudget() {
-        // Prepare data
         Budget budget = new Budget();
-        budget.setBudget_id(1);
+        budget.setBudget_id(10);
 
         Budget updatedBudget = new Budget();
-        updatedBudget.setBudget_id(1);
+        updatedBudget.setBudget_id(10);
         updatedBudget.setAmount(100.0);
 
-        // Mock repository method
-        Mockito.when(budgetDao.existsById(1)).thenReturn(true);
+        Mockito.when(budgetDao.existsById(10)).thenReturn(true);
         Mockito.when(budgetDao.save(any(Budget.class))).thenReturn(updatedBudget);
 
-        // Call service method
         boolean result = budgetService.updateBudget(updatedBudget);
 
-        // Verify
-        assertEquals("budget updated successfully", result);
+        assertEquals(true, result);
     }
 
     @Test
     void deleteBudget() {
-        // Prepare data
         Budget budget = new Budget();
-        budget.setBudget_id(1);
+        budget.setBudget_id(10);
 
-        // Mock repository method
         Mockito.when(budgetDao.existsById(1)).thenReturn(true);
 
-        // Call service method
         boolean result = budgetService.deleteBudget(1);
 
-        // Verify
-        assertEquals("Expense deleted successfully", result);
+        assertEquals(true, result);
         verify(budgetDao, times(1)).deleteById(1);
     }
 }

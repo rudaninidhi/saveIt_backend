@@ -8,17 +8,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
 
 @SpringBootTest
 class IncomeServiceTest {
@@ -56,10 +51,10 @@ class IncomeServiceTest {
         Mockito.when(incomeDao.findById(1)).thenReturn(Optional.of(income));
 
         // Call service method
-//        boolean result = incomeService.getIncomeById(1);
+        Optional<?> result = incomeService.getIncomeById(1);
 
         // Verify
-//        assertEquals(income, result.orElse(null));
+        assertEquals(true, result.isPresent());
     }
 
     @Test
@@ -68,14 +63,13 @@ class IncomeServiceTest {
         Income income = new Income();
 
         // Mock repository method
-        Mockito.when(incomeDao.save(any(Income.class))).thenReturn(income);
+        Mockito.when(incomeDao.save(Mockito.any(Income.class))).thenReturn(income);
 
         // Call service method
         boolean result = incomeService.addIncome(income);
 
         // Verify
-//        assertEquals("Income added successfully", result.getBody());
-//        assertEquals(HttpStatus.CREATED, result.getStatusCode());
+        assertEquals(true, result);
     }
 
     @Test
@@ -90,14 +84,13 @@ class IncomeServiceTest {
 
         // Mock repository method
         Mockito.when(incomeDao.existsById(1)).thenReturn(true);
-        Mockito.when(incomeDao.save(any(Income.class))).thenReturn(updatedIncome);
+        Mockito.when(incomeDao.save(Mockito.any(Income.class))).thenReturn(updatedIncome);
 
         // Call service method
-       boolean result = incomeService.updateIncome(updatedIncome);
+        boolean result = incomeService.updateIncome(updatedIncome);
 
         // Verify
-//        assertEquals("Income updated successfully", result);
-//        assertEquals(HttpStatus.OK, result);
+        assertEquals(true, result);
     }
 
     @Test
@@ -113,8 +106,6 @@ class IncomeServiceTest {
         boolean result = incomeService.deleteIncome(1);
 
         // Verify
-//        assertEquals("Income deleted successfully", result);
-//        assertEquals(HttpStatus.OK, result);
-//        verify(incomeDao, times(1)).deleteById(1);
+        assertEquals(true, result);
     }
 }
