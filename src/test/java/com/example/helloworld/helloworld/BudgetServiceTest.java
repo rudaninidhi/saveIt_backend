@@ -73,10 +73,10 @@ class BudgetServiceTest {
         Mockito.when(budgetDao.save(any(Budget.class))).thenReturn(budget);
 
         // Call service method
-        ResponseEntity<String> result = budgetService.addBudget(budget);
+        boolean result = budgetService.addBudget(budget);
 
         // Verify
-        assertEquals("budget added successfully", result.getBody());
+        assertEquals("budget added successfully", result);
     }
 
     @Test
@@ -94,10 +94,10 @@ class BudgetServiceTest {
         Mockito.when(budgetDao.save(any(Budget.class))).thenReturn(updatedBudget);
 
         // Call service method
-        ResponseEntity<String> result = budgetService.updateBudget(updatedBudget);
+        boolean result = budgetService.updateBudget(updatedBudget);
 
         // Verify
-        assertEquals("budget updated successfully", result.getBody());
+        assertEquals("budget updated successfully", result);
     }
 
     @Test
@@ -110,10 +110,10 @@ class BudgetServiceTest {
         Mockito.when(budgetDao.existsById(1)).thenReturn(true);
 
         // Call service method
-        ResponseEntity<String> result = budgetService.deleteBudget(1);
+        boolean result = budgetService.deleteBudget(1);
 
         // Verify
-        assertEquals("Expense deleted successfully", result.getBody());
+        assertEquals("Expense deleted successfully", result);
         verify(budgetDao, times(1)).deleteById(1);
     }
 }
