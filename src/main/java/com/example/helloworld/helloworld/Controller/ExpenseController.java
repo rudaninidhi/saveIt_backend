@@ -61,6 +61,7 @@ public class ExpenseController {
     @PutMapping("/updateExpense")
     public ResponseEntity<String> updateExpense(@RequestBody Expense updatedExpense) {
         try {
+            System.out.println(updatedExpense);
             boolean success = serviceobj.updateExpense(updatedExpense);
             if (success) {
                 return new ResponseEntity<>("Expense updated successfully", HttpStatus.OK);

@@ -28,7 +28,6 @@ public class Expense implements Serializable {
         this.amount_spended = amount_spended;
         this.user_id = user_id;
         this.expense_description=expense_description;
-        System.out.println(expense_description+expense_category+spend_date+amount_spended);
     }
 
     public String getExpense_category() {
@@ -90,6 +89,7 @@ public class Expense implements Serializable {
     }
 
     public void setExpense_id(int i) {
+        this.expense_id=i;
     }
 
     public void setAmount(double v) {
