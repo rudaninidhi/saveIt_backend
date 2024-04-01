@@ -1,10 +1,8 @@
-package com.example.helloworld.helloworld.Service;
+package com.example.helloworld.helloworld.service;
 
-import com.example.helloworld.helloworld.Dao.UserDao;
-import com.example.helloworld.helloworld.Entity.Users;
+import com.example.helloworld.helloworld.dao.UserDao;
+import com.example.helloworld.helloworld.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -41,7 +39,7 @@ public class UserService {
 
     public boolean updateUser(Users updatedUser) {
         try {
-            if (!user.existsById(updatedUser.getUser_id())) {
+            if (!user.existsById(updatedUser.getUserId())) {
                 return false;
             }
             user.save(updatedUser);

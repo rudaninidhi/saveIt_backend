@@ -1,8 +1,8 @@
 package com.example.helloworld.helloworld;
 
-import com.example.helloworld.helloworld.Dao.IncomeDao;
-import com.example.helloworld.helloworld.Entity.Income;
-import com.example.helloworld.helloworld.Service.IncomeService;
+import com.example.helloworld.helloworld.dao.IncomeDao;
+import com.example.helloworld.helloworld.entity.Income;
+import com.example.helloworld.helloworld.service.IncomeService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

@@ -1,12 +1,9 @@
-package com.example.helloworld.helloworld.Service;
+package com.example.helloworld.helloworld.service;
 
-import com.example.helloworld.helloworld.Dao.IncomeDao;
-import com.example.helloworld.helloworld.Entity.Income;
+import com.example.helloworld.helloworld.dao.IncomeDao;
+import com.example.helloworld.helloworld.entity.Income;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -29,7 +26,8 @@ public class IncomeService {
         return income.findIncomesByUserId(id);
     }
 
-    public boolean addIncome(@RequestBody Income income1) {
+    public boolean addIncome(Income income1) {
+        System.out.println("here" + income1);
         try {
             income.save(income1);
             System.out.println("here" + income1);
@@ -41,7 +39,7 @@ public class IncomeService {
 
     public boolean updateIncome(Income updatedIncome) {
         try {
-            if (!income.existsById(updatedIncome.getIncome_id())) {
+            if (!income.existsById(updatedIncome.getIncomeId())) {
                 return false;
             }
             income.save(updatedIncome);

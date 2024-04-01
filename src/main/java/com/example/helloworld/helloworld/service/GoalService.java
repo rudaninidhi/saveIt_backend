@@ -1,10 +1,8 @@
-package com.example.helloworld.helloworld.Service;
+package com.example.helloworld.helloworld.service;
 
-import com.example.helloworld.helloworld.Dao.GoalDao;
-import com.example.helloworld.helloworld.Entity.Goal;
+import com.example.helloworld.helloworld.dao.GoalDao;
+import com.example.helloworld.helloworld.entity.Goal;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;

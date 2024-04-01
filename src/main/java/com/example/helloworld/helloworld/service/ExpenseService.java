@@ -1,12 +1,9 @@
-package com.example.helloworld.helloworld.Service;
+package com.example.helloworld.helloworld.service;
 
-import com.example.helloworld.helloworld.Dao.ExpenseDao;
-import com.example.helloworld.helloworld.Entity.Expense;
+import com.example.helloworld.helloworld.dao.ExpenseDao;
+import com.example.helloworld.helloworld.entity.Expense;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.List;
 import java.util.Optional;
@@ -27,7 +24,8 @@ public class ExpenseService {
         return expense.findById(id);
     }
 
-    public boolean addExpense(@RequestBody Expense expense1) {
+    public boolean addExpense( Expense expense1) {
+        System.out.println("here" + expense1);
         try {
             expense.save(expense1);
             System.out.println("here" + expense1);
@@ -39,7 +37,7 @@ public class ExpenseService {
 
     public boolean updateExpense(Expense updatedExpense) {
         try {
-            if (!expense.existsById(updatedExpense.getExpense_id())) {
+            if (!expense.existsById(updatedExpense.getExpenseId())) {
                 return false;
             }
             expense.save(updatedExpense);

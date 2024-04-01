@@ -1,8 +1,8 @@
 package com.example.helloworld.helloworld;
 
-import com.example.helloworld.helloworld.Dao.GoalDao;
-import com.example.helloworld.helloworld.Entity.Goal;
-import com.example.helloworld.helloworld.Service.GoalService;
+import com.example.helloworld.helloworld.dao.GoalDao;
+import com.example.helloworld.helloworld.entity.Goal;
+import com.example.helloworld.helloworld.service.GoalService;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;

@@ -1,9 +1,8 @@
-package com.example.helloworld.helloworld.Service;
+package com.example.helloworld.helloworld.service;
 
-import com.example.helloworld.helloworld.Dao.BudgetDao;
-import com.example.helloworld.helloworld.Entity.Budget;
+import com.example.helloworld.helloworld.dao.BudgetDao;
+import com.example.helloworld.helloworld.entity.Budget;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 

@@ -1,8 +1,7 @@
-package com.example.helloworld.helloworld.Controller;
+package com.example.helloworld.helloworld.controller;
 
-import com.example.helloworld.helloworld.Entity.Budget;
-import com.example.helloworld.helloworld.Entity.Expense;
-import com.example.helloworld.helloworld.Service.BudgetService;
+import com.example.helloworld.helloworld.entity.Budget;
+import com.example.helloworld.helloworld.service.BudgetService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

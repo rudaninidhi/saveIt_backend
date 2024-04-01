@@ -1,4 +1,4 @@
-package com.example.helloworld.helloworld.Entity;
+package com.example.helloworld.helloworld.entity;
 
 import jakarta.persistence.*;
 

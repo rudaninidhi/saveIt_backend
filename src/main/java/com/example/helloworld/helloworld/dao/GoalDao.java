@@ -1,12 +1,11 @@
-package com.example.helloworld.helloworld.Dao;
+package com.example.helloworld.helloworld.dao;
 
-import com.example.helloworld.helloworld.Entity.Goal;
+import com.example.helloworld.helloworld.entity.Goal;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface GoalDao extends JpaRepository<Goal, Integer> {

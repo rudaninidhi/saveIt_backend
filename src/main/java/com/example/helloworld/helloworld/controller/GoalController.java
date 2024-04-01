@@ -1,7 +1,7 @@
-package com.example.helloworld.helloworld.Controller;
+package com.example.helloworld.helloworld.controller;
 
-import com.example.helloworld.helloworld.Entity.Goal;
-import com.example.helloworld.helloworld.Service.GoalService;
+import com.example.helloworld.helloworld.entity.Goal;
+import com.example.helloworld.helloworld.service.GoalService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
