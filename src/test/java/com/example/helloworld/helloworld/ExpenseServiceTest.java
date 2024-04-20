@@ -43,7 +43,7 @@ class ExpenseServiceTest {
     @Test
     void deleteExpense() {
         Expense expense = new Expense();
-        expense.setExpense_id(19);
+        expense.setExpenseId(19);
 
         Mockito.when(expenseDao.existsById(19)).thenReturn(true);
 

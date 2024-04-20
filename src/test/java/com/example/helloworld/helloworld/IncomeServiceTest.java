@@ -45,7 +45,7 @@ class IncomeServiceTest {
     void getIncomeById() {
         // Prepare data
         Income income = new Income();
-        income.setIncome_id(1);
+        income.setIncomeId(1);
 
         // Mock repository method
         Mockito.when(incomeDao.findById(1)).thenReturn(Optional.of(income));
@@ -76,11 +76,11 @@ class IncomeServiceTest {
     void updateIncome() {
         // Prepare data
         Income income = new Income();
-        income.setIncome_id(1);
+        income.setIncomeId(1);
 
         Income updatedIncome = new Income();
-        updatedIncome.setIncome_id(1);
-        updatedIncome.setAmount(100.0);
+        updatedIncome.setIncomeId(1);
+        updatedIncome.setIncomeAmount(100);
 
         // Mock repository method
         Mockito.when(incomeDao.existsById(1)).thenReturn(true);
@@ -97,7 +97,7 @@ class IncomeServiceTest {
     void deleteIncome() {
         // Prepare data
         Income income = new Income();
-        income.setIncome_id(1);
+        income.setIncomeId(1);
 
         // Mock repository method
         Mockito.when(incomeDao.existsById(1)).thenReturn(true);

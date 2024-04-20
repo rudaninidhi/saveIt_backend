@@ -1,8 +1,10 @@
 package com.example.helloworld.helloworld.entity;
 
 import jakarta.persistence.*;
+import lombok.Builder;
 
 import java.io.Serializable;
+import java.util.Set;
 
 @Entity
 @Table(name="Users")
@@ -62,4 +64,6 @@ public class Users implements Serializable {
     public void setMobileNo(String mobileNo) {
         this.mobileNo = mobileNo;
     }
+
+
 }
