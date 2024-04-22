@@ -1,7 +1,7 @@
 package com.example.helloworld.helloworld.entity;
 
 import jakarta.persistence.*;
-import lombok.Builder;
+//import lombok.Builder;
 
 import java.io.Serializable;
 import java.util.Set;
