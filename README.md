@@ -8,7 +8,7 @@
 
 ## Getting Started
  
-These instructions will help you get a copy of the project up and running on your local machine for development and testing purposes.
+These Instructions Will Help you get a copy of the project up and running on your local machine for development and testing purposes.
 
 # Terraform AWS EC2 Instance Provisioning
  
