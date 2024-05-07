@@ -14,18 +14,20 @@ import java.util.List;
 import java.util.Optional;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
-@CrossOrigin(origins = "http://127.0.0.1:5500")
+
 @RestController
 public class ExpenseController {
 
     @Autowired
     ExpenseService serviceobj;
 
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping("/getexpense")
     public List<Expense> getexpense() {
         return serviceobj.getexpense();
     }
 
+    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping("/getExpensesByUserId/{user_id}")
     public ResponseEntity<?> getExpensesByUser_id(@PathVariable int user_id) {
         List<Expense> expenses = serviceobj.getExpensesByUserId(user_id);
