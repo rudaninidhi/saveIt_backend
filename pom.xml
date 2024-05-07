@@ -45,6 +45,47 @@
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-security</artifactId>-->
+<!--		</dependency>-->
+
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-oauth2-client</artifactId>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>org.springframework.boot</groupId>-->
+<!--			<artifactId>spring-boot-starter-oauth2-resource-server</artifactId>-->
+<!--		</dependency>-->
+		<dependency>
+			<groupId>org.projectlombok</groupId>
+			<artifactId>lombok</artifactId>
+			<optional>true</optional>
+		</dependency>
+<!--		<dependency>-->
+<!--			<groupId>io.jsonwebtoken</groupId>-->
+<!--			<artifactId>jjwt-api</artifactId>-->
+<!--			<version>0.11.2</version> &lt;!&ndash; You can replace this version with the one you need &ndash;&gt;-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>io.jsonwebtoken</groupId>-->
+<!--			<artifactId>jjwt-jackson</artifactId>-->
+<!--			<version>0.11.2</version> &lt;!&ndash; You can replace this version with the one you need &ndash;&gt;-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>jakarta.servlet</groupId>-->
+<!--			<artifactId>jakarta.servlet-api</artifactId>-->
+<!--			<version>6.0.0</version>-->
+<!--			<scope>provided</scope>-->
+<!--		</dependency>-->
+<!--		<dependency>-->
+<!--			<groupId>io.jsonwebtoken</groupId>-->
+<!--			<artifactId>jjwt-impl</artifactId>-->
+<!--			<version>0.11.2</version> &lt;!&ndash; You can replace this version with the one you need &ndash;&gt;-->
+<!--			<scope>runtime</scope>-->
+<!--		</dependency>-->
 	</dependencies>
 
 	<build>
