@@ -14,20 +14,17 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@RequestMapping("/api")
 public class ExpenseController {
 
     @Autowired
     ExpenseService serviceobj;
 
-    // Enable CORS for specific origins
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping("/getexpense")
     public List<Expense> getexpense() {
         return serviceobj.getexpense();
     }
 
-    // Enable CORS for specific origins
-    @CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping("/getExpensesByUserId/{user_id}")
     public ResponseEntity<?> getExpensesByUser_id(@PathVariable int user_id) {
         List<Expense> expenses = serviceobj.getExpensesByUserId(user_id);
