@@ -15,10 +15,9 @@ import java.util.Optional;
 
 @RestController
 public class BudgetController {
-
     @Autowired
     BudgetService serviceobj;
-
+@CrossOrigin(origins = "http://127.0.0.1:5500")
     @GetMapping("/getBudget")
     public List<Budget> getBudget() {
         return serviceobj.getBudget();
