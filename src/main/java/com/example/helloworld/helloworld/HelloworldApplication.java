@@ -5,7 +5,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"com.example.helloworld", "com.example.helloworld.helloworld.config"})
 public class HelloworldApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(HelloworldApplication.class, args);
