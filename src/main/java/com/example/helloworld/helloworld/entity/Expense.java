@@ -14,8 +14,8 @@ public class Expense implements Serializable {
     @Column(name = "expense_id")
     private int expenseId;
 
-    @Column(name = "expense_category")
-    private String expenseCategory;
+    @Column(name = "expense_category_id")
+    private int expenseCategory;
 
     @Column(name = "expense_description")
     private String expenseDescription;
@@ -29,7 +29,7 @@ public class Expense implements Serializable {
     @Column(name = "user_id")
     private int userId;
 
-    public Expense(int expenseId, String expenseCategory, String expenseDescription, Date spendDate, int amountSpend, int userId) {
+    public Expense(int expenseId, int expenseCategory, String expenseDescription, Date spendDate, int amountSpend, int userId) {
         this.expenseId = expenseId;
         this.expenseCategory = expenseCategory;
         this.expenseDescription = expenseDescription;
@@ -46,11 +46,11 @@ public class Expense implements Serializable {
         this.expenseId = expenseId;
     }
 
-    public String getExpenseCategory() {
+    public int getExpenseCategory() {
         return expenseCategory;
     }
 
-    public void setExpenseCategory(String expenseCategory) {
+    public void setExpenseCategory(int expenseCategory) {
         this.expenseCategory = expenseCategory;
     }
 

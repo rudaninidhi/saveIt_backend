@@ -13,8 +13,8 @@ public class Income implements Serializable {
     @Column(name = "income_id")
     private int incomeId;
 
-    @Column(name = "income_category")
-    private String incomeCategory;
+    @Column(name = "income_category_id")
+    private int incomeCategory;
 
     @Column(name = "income_description")
     private String incomeDescription;
@@ -28,7 +28,7 @@ public class Income implements Serializable {
     @Column(name = "user_id")
     private int userId;
 
-    public Income(int incomeId, String incomeCategory, String incomeDescription, Date incomeDate, int incomeAmount, int userId) {
+    public Income(int incomeId, int incomeCategory, String incomeDescription, Date incomeDate, int incomeAmount, int userId) {
         this.incomeId = incomeId;
         this.incomeCategory = incomeCategory;
         this.incomeDescription = incomeDescription;
@@ -61,11 +61,11 @@ public class Income implements Serializable {
         this.incomeId = incomeId;
     }
 
-    public String getIncomeCategory() {
+    public int getIncomeCategory() {
         return incomeCategory;
     }
 
-    public void setIncomeCategory(String incomeCategory) {
+    public void setIncomeCategory(int incomeCategory) {
         this.incomeCategory = incomeCategory;
     }
 

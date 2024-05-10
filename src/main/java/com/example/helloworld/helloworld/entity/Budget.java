@@ -14,7 +14,7 @@ public class Budget implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int budget_id;
 
-    private String budget_category;
+    private int budget_category_id;
     private double amount;
     private Date start_date;
     private Date end_date;
@@ -22,9 +22,9 @@ public class Budget implements Serializable {
     private int user_id;
     public Budget() {
     }
-    public Budget(int budget_id, String budget_category, double amount, Date start_date, Date end_date, String budget_description, int user_id) {
+    public Budget(int budget_id, int budget_category_id, double amount, Date start_date, Date end_date, String budget_description, int user_id) {
         this.budget_id = budget_id;
-        this.budget_category = budget_category;
+        this.budget_category_id = budget_category_id;
         this.amount = amount;
         this.start_date = start_date;
         this.end_date = end_date;
@@ -40,12 +40,12 @@ public class Budget implements Serializable {
         this.budget_id = budget_id;
     }
 
-    public String getBudget_category() {
-        return budget_category;
+    public int getBudget_category() {
+        return budget_category_id;
     }
 
-    public void setBudget_category(String budget_category) {
-        this.budget_category = budget_category;
+    public void setBudget_category(int budget_category) {
+        this.budget_category_id = budget_category;
     }
 
     public double getAmount() {
