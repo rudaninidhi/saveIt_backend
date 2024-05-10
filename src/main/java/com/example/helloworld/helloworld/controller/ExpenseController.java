@@ -34,6 +34,7 @@ public class ExpenseController {
             return new ResponseEntity<>(expenses, HttpStatus.OK);
         }
     }
+    
 
     @GetMapping("/getExpenseById/{id}")
     public Optional<Expense> getExpenseById(@PathVariable int id) {
