@@ -1,6 +1,7 @@
 package com.example.helloworld.helloworld.service;
 
 import com.example.helloworld.helloworld.dao.UserDao;
+import com.example.helloworld.helloworld.entity.Expense;
 import com.example.helloworld.helloworld.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,6 +25,10 @@ public class UserService  {
         return user.findAll();
     }
 
+    public List<Users> getUserByEmail(String emailId) {
+        System.out.println("calling the dao with email "+ emailId);
+        return user.findByEmailId(emailId);
+    }
     public Optional<Users> getUserById(int id) {
         return user.findById(id);
     }

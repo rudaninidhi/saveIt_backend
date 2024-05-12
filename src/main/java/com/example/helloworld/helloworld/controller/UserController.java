@@ -1,5 +1,6 @@
 package com.example.helloworld.helloworld.controller;
 
+import com.example.helloworld.helloworld.entity.Income;
 import com.example.helloworld.helloworld.entity.Users;
 import com.example.helloworld.helloworld.service.UserService;
 import org.slf4j.Logger;
@@ -31,21 +32,21 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @PostMapping("/addUser")
-    public ResponseEntity<String> addUser(@RequestBody Users user) {
-        logger.info("User received: {}", user);
-        try {
-            boolean success = serviceobj.addUser(user);
-            if (success) {
-                return new ResponseEntity<>("User added successfully", HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        } catch (DataAccessException e) {
-            logger.error("Error adding User", e);
-            return new ResponseEntity<>("Database error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
+//    @PostMapping("/addUser")
+//    public ResponseEntity<String> addUser(@RequestBody Users user) {
+//        logger.info("User received: {}", user);
+//        try {
+//            boolean success = serviceobj.addUser(user);
+//            if (success) {
+//                return new ResponseEntity<>("User added successfully", HttpStatus.OK);
+//            } else {
+//                return new ResponseEntity<>("Error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
+//            }
+//        } catch (DataAccessException e) {
+//            logger.error("Error adding User", e);
+//            return new ResponseEntity<>("Database error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
 
     @PutMapping("/updateUser")
@@ -75,4 +76,17 @@ public class UserController {
             return new ResponseEntity<>("Error deleting User: " + e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+
+    @GetMapping("/getUserByEmail/{emailId}")
+    public ResponseEntity<?> GetUserByEmail(@PathVariable String emailId) {
+        System.out.println("inside GetUserByEmail email is :  "+ emailId);
+        List<Users> user = serviceobj.getUserByEmail(emailId);
+        if (user.isEmpty()) {
+            return new ResponseEntity<>("No income records found for the user ID: " + emailId, HttpStatus.NOT_FOUND);
+        } else {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }
+    }
+
 }

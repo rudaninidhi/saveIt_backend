@@ -1,6 +1,7 @@
 package com.example.helloworld.helloworld.entity;
 
 import jakarta.persistence.*;
+import lombok.*;
 //import lombok.Builder;
 
 import java.io.Serializable;
@@ -8,6 +9,9 @@ import java.util.Set;
 
 @Entity
 @Table(name="Users")
+@Getter
+@Setter
+@Builder
 public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +34,12 @@ public class Users implements Serializable {
         this.userId = userId;
         this.userName = userName;
         this.emailId = emailId;
-        this.mobileNo = mobileNo;
+        if(mobileNo.isEmpty()){
+            this.mobileNo = "12345678950";
+        }else{
+            this.mobileNo = mobileNo;
+        }
+
     }
 
     public int getUserId() {
