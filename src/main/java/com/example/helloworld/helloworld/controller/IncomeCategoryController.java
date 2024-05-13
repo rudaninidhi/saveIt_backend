@@ -1,6 +1,7 @@
 package com.example.helloworld.helloworld.controller;
 
 import com.example.helloworld.helloworld.entity.BudgetCategory;
+import com.example.helloworld.helloworld.entity.ExpenseCategory;
 import com.example.helloworld.helloworld.entity.IncomeCategory;
 import com.example.helloworld.helloworld.service.BudgetCategoryService;
 import com.example.helloworld.helloworld.service.IncomeCategoryService;
@@ -22,10 +23,12 @@ public class IncomeCategoryController {
     private IncomeCategoryService incomeCategoryService;
     private static final Logger logger = LoggerFactory.getLogger(IncomeCategoryController.class);
 
+
     @GetMapping("/getIncomeCategories")
-    public List<IncomeCategory> getIncomeCategories() {
-        return IncomeCategoryService.getIncomeCategories();
+    public List<IncomeCategory> getExpenseCategories() {
+        return incomeCategoryService.getIncomeCategories();
     }
+
 
     @GetMapping("/getIncomeCategoryById/{id}")
     public ResponseEntity<?> getIncomeCategoryById(@PathVariable int id) {
