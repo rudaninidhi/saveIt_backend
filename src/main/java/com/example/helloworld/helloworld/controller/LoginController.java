@@ -1,45 +1,26 @@
-//package com.example.helloworld.helloworld.controller;
-//
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.annotation.AuthenticationPrincipal;
-//
-//import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken;
-//import org.springframework.security.oauth2.core.oidc.user.OidcUserAuthority;
-//import org.springframework.security.oauth2.core.user.OAuth2User;
-//import org.springframework.web.bind.annotation.GetMapping;
-//import org.springframework.web.bind.annotation.RestController;
-//import org.springframework.web.client.RestTemplate;
-//
-//import java.security.Principal;
-//import java.util.Collection;
-//import java.util.Map;
-//
-//@RestController
-//public class LoginController {
-//    @GetMapping("/")
-//    public String home() {
-//        return "Login Is here";
-//    }
-//
-//    @GetMapping("/userInfo")
-//    public Map<String, Object> getUser(@AuthenticationPrincipal OAuth2User oAuth2User) {
-//        return oAuth2User.getAttributes();
-//    }
-//
-//    @GetMapping("/usertoken")
-//    public Principal getUser(Principal principal) {
-//        String tokenValue;
-//        OAuth2AuthenticationToken authenticationToken = (OAuth2AuthenticationToken) principal;
-//        Collection<GrantedAuthority> authorities = authenticationToken.getAuthorities();
-//        if (!authorities.isEmpty()) {
-//            OidcUserAuthority oidcUserAuthority = (OidcUserAuthority) authorities.iterator().next();
-//            tokenValue = oidcUserAuthority.getIdToken().getTokenValue();
-//            String accessTokenHash = oidcUserAuthority.getIdToken().getAccessTokenHash();
-//            System.out.println("\n\nToken Value: "+tokenValue);
-//            System.out.println("\n\nAccess Token: "+accessTokenHash);
-//        }
-//        return principal;
-//
-//}
-//
-//}
+package com.example.helloworld.helloworld.controller;
+
+import org.springframework.web.bind.annotation.RestController;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import org.springframework.web.bind.annotation.*;
+import java.util.Date;
+@RestController
+@RequestMapping("/login")
+public class LoginController {
+    private static final String SECRET_KEY = "5R@hP2A+gQkzXK9vS4M*E7jWdGdF5aJd";
+    private static final long EXPIRATION_TIME = 864_000_000; // 10 days in milliseconds
+    @PostMapping("/auth")
+    public String generateToken(@RequestBody String email) {
+        // Calculate token expiration time
+        Date expirationDate = new Date(System.currentTimeMillis() + EXPIRATION_TIME);
+        // Create a JWT token with the email as the subject
+        String token = Jwts.builder()
+                .setSubject(email)
+                .setExpiration(expirationDate)
+                .signWith(SignatureAlgorithm.HS256, SECRET_KEY)
+                .compact();
+        return token;
+    }
+}
+

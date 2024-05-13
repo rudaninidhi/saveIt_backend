@@ -42,6 +42,11 @@ public class Users implements Serializable {
 
     }
 
+    public Users(int userId, String emailId) {
+        this.userId = userId;
+        this.emailId = emailId;
+    }
+
     public int getUserId() {
         return userId;
     }

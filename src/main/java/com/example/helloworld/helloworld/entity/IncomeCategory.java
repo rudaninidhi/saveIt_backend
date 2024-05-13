@@ -28,4 +28,28 @@ public class IncomeCategory implements Serializable {
 
     public IncomeCategory() {
     }
+
+    public int getIncomeCategoryId() {
+        return incomeCategoryId;
+    }
+
+    public void setIncomeCategoryId(int incomeCategoryId) {
+        this.incomeCategoryId = incomeCategoryId;
+    }
+
+    public String getIncomeCategoryDesc() {
+        return incomeCategoryDesc;
+    }
+
+    public void setIncomeCategoryDesc(String incomeCategoryDesc) {
+        this.incomeCategoryDesc = incomeCategoryDesc;
+    }
+
+    public String getIncomeCategoryName() {
+        return incomeCategoryName;
+    }
+
+    public void setIncomeCategoryName(String incomeCategoryName) {
+        this.incomeCategoryName = incomeCategoryName;
+    }
 }
