@@ -11,7 +11,6 @@ import java.util.Set;
 @Table(name="Users")
 @Getter
 @Setter
-@Builder
 public class Users implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,9 +23,6 @@ public class Users implements Serializable {
     @Column(name = "email_id")
     private String emailId;
 
-    @Column(name = "mobile_no")
-    private String mobileNo;
-
     public Users() {
     }
 
@@ -34,11 +30,6 @@ public class Users implements Serializable {
         this.userId = userId;
         this.userName = userName;
         this.emailId = emailId;
-        if(mobileNo.isEmpty()){
-            this.mobileNo = "12345678950";
-        }else{
-            this.mobileNo = mobileNo;
-        }
 
     }
 
@@ -71,13 +62,6 @@ public class Users implements Serializable {
         this.emailId = emailId;
     }
 
-    public String getMobileNo() {
-        return mobileNo;
-    }
-
-    public void setMobileNo(String mobileNo) {
-        this.mobileNo = mobileNo;
-    }
 
 
 }
