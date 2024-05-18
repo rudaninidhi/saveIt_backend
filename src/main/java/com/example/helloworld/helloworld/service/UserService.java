@@ -26,7 +26,7 @@ public class UserService  {
     }
 
     public List<Users> getUserByEmail(String emailId) {
-        System.out.println("calling the dao with email "+ emailId);
+     System.out.println("calling the dao with email "+ emailId);
         return user.findByEmailId(emailId);
     }
     public Optional<Users> getUserById(int id) {
