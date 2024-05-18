@@ -13,7 +13,8 @@ public class FilterConfig {
         registrationBean.setFilter(new TokenVerificationFilter());
         // Exclude the endpoint for generating token from token verification
         registrationBean.addUrlPatterns("/*");
-        registrationBean.addUrlPatterns("/login/auth"); // Exclude this endpoint
+        registrationBean.addUrlPatterns("/login/auth");
+        registrationBean.addUrlPatterns("/addUser");// Exclude this endpoint
         registrationBean.setOrder(Ordered.HIGHEST_PRECEDENCE);
         return registrationBean;
     }

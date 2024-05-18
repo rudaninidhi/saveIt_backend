@@ -31,23 +31,6 @@ public class UserController {
 
     private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
-    @PostMapping("/addUser")
-    public ResponseEntity<String> addUser(@RequestBody Users user) {
-        logger.info("User received: {}", user);
-        try {
-            boolean success = serviceobj.addUser(user);
-            if (success) {
-                return new ResponseEntity<>("User added successfully", HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
-            }
-        } catch (DataAccessException e) {
-            logger.error("Error adding User", e);
-            return new ResponseEntity<>("Database error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-
 
     @PutMapping("/updateUser")
     public ResponseEntity<String> updateUser(@RequestBody Users updatedUser) {

@@ -27,10 +27,14 @@ public class TokenVerificationFilter extends GenericFilterBean {
             return;
         }
         // Allow requests to the /login/auth endpoint to bypass token verification
-        if ((httpRequest.getRequestURI().equals("/login/auth") && httpRequest.getMethod().equals("POST")) || httpRequest.getRequestURI().equals("/test-cors") ) {
+        if ((httpRequest.getRequestURI().equals("/login/auth") && httpRequest.getMethod().equals("POST")) ||
+                httpRequest.getRequestURI().equals("/test-cors") ||
+                (httpRequest.getRequestURI().equals("/addUser") && httpRequest.getMethod().equals("POST"))) {
             chain.doFilter(request, response);
             return;
         }
+
+
         // Extract the JWT token from the Authorization header
         String token = extractToken(httpRequest.getHeader("Authorization"));
         if (token != null) {

@@ -5,6 +5,7 @@ import com.example.helloworld.helloworld.service.UserService;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -19,7 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/login")
 public class LoginController {
 
     private static final String SECRET_KEY = "5R@hP2A+gQkzXK9vS4M*E7jWdGdF5aJd";
@@ -28,7 +28,7 @@ public class LoginController {
     @Autowired
     UserService userService;
 
-    @PostMapping("/auth")
+    @PostMapping("/login/auth")
     public ResponseEntity<?> generateToken(@RequestBody String email) {
         // Calculate token expiration time
         Date expirationDate = new Date(System.currentTimeMillis() + EXPIRATION_TIME);
@@ -55,6 +55,20 @@ public class LoginController {
             responseBody.put("token", token);
             return new ResponseEntity<>(responseBody, HttpStatus.OK);
 
+        }
+    }
+
+    @PostMapping("/addUser")
+    public ResponseEntity<String> addUser(@RequestBody Users user) {
+        try {
+            boolean success = userService.addUser(user);
+            if (success) {
+                return new ResponseEntity<>("User added successfully", HttpStatus.OK);
+            } else {
+                return new ResponseEntity<>("Error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
+            }
+        } catch (DataAccessException e) {
+            return new ResponseEntity<>("Database error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
