@@ -60,15 +60,23 @@ public class LoginController {
 
     @PostMapping("/addUser")
     public ResponseEntity<String> addUser(@RequestBody Users user) {
-        try {
-            boolean success = userService.addUser(user);
-            if (success) {
-                return new ResponseEntity<>("User added successfully", HttpStatus.OK);
-            } else {
-                return new ResponseEntity<>("Error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
+        List<Users> users = userService.getUserByEmail(user.getEmailId());
+        if (users.isEmpty()) {
+            try {
+                boolean success = userService.addUser(user);
+
+                if (success) {
+                    return new ResponseEntity<>("User added successfully", HttpStatus.OK);
+                } else {
+                    return new ResponseEntity<>("Error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
+                }
+            } catch (DataAccessException e) {
+                return new ResponseEntity<>("Database error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
             }
-        } catch (DataAccessException e) {
-            return new ResponseEntity<>("Database error adding User", HttpStatus.INTERNAL_SERVER_ERROR);
+
+        } else {
+            return new ResponseEntity<>("Already exists please login" + user.getEmailId(), HttpStatus.CONFLICT);
         }
+
     }
 }
